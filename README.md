@@ -1,3 +1,11 @@
-## tony-lisp-pack
+lisp-pack
+=========
 
-My setup regarding lisp (common-lisp, etc...)
+Pack to setup lisp modes.
+
+# install
+
+In your `.emacs-live.el` add this snippet:
+```elisp
+(live-add-packs '(lisp-pack))
+```
