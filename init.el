@@ -25,6 +25,9 @@
 
 (setq slime-net-coding-system 'utf-8-unix)
 
+;; checking parenthesis at save time
+(add-hook 'after-save-hook 'check-parens nil t)
+
 ;; other bindings that uses personal functions
 ;; Load bindings config
 (live-load-config-file "bindings.el")
