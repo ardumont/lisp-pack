@@ -7,5 +7,5 @@ Pack to setup lisp modes.
 
 In your `.emacs-live.el` add this snippet:
 ```elisp
-(live-add-packs '(lisp-pack))
+(live-add-packs '("/path/to/lisp-pack"))
 ```
