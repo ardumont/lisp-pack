@@ -5,6 +5,8 @@
 
 ;; common-lisp setup
 
+;;(load (expand-file-name "~/repo/perso/dot-files/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "/usr/bin/clisp")
 
 ;; add paredit mode to different modes
