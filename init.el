@@ -12,8 +12,7 @@
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "/usr/bin/clisp")
 
-;; add paredit mode to different modes
-
+;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
                 clojure-mode-hook
                 clojurescript-mode-hook
@@ -21,7 +20,15 @@
                 inferior-lisp-mode-hook
                 slime-repl-mode-hook
                 nrepl-mode-hook))
-  (add-hook hook (lambda () (paredit-mode +1)))
+  (add-hook hook (lambda () (paredit-mode +1))))
+
+;; add paredit mode to different lisp modes
+
+(dolist (hook '(emacs-lisp-mode-hook
+                clojure-mode-hook
+                clojurescript-mode-hook
+                lisp-mode-hook
+                inferior-lisp-mode-hook))
   (add-hook hook 'hs-minor-mode))
 
 ;; slime repl setup
