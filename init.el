@@ -1,7 +1,10 @@
 (install-packs '(;; to code in common-lisp
                  slime
                  slime-repl
-                 ediff))
+                 ediff
+                 hideshow))
+
+(require 'hideshow)
 
 ;; common-lisp setup
 
@@ -11,11 +14,15 @@
 
 ;; add paredit mode to different modes
 
-(dolist (hook '(lisp-mode
+(dolist (hook '(emacs-lisp-mode-hook
+                clojure-mode-hook
+                clojurescript-mode-hook
+                lisp-mode-hook
                 inferior-lisp-mode-hook
                 slime-repl-mode-hook
                 nrepl-mode-hook))
-  (add-hook hook (lambda () (paredit-mode +1))))
+  (add-hook hook (lambda () (paredit-mode +1)))
+  (add-hook hook 'hs-minor-mode))
 
 ;; slime repl setup
 
