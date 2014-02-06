@@ -1,6 +1,4 @@
 (install-packs '(;; to code in common-lisp
-                 slime
-                 slime-repl
                  ediff
                  hideshow))
 
@@ -17,9 +15,7 @@
                 clojure-mode-hook
                 clojurescript-mode-hook
                 lisp-mode-hook
-                inferior-lisp-mode-hook
-                slime-repl-mode-hook
-                nrepl-mode-hook))
+                inferior-lisp-mode-hook))
   (add-hook hook (lambda () (paredit-mode +1))))
 
 ;; add paredit mode to different lisp modes
@@ -30,14 +26,6 @@
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
   (add-hook hook 'hs-minor-mode))
-
-;; slime repl setup
-
-; add color into the repl via clojure-jack-in
-(add-hook 'slime-repl-mode-hook
-         (defun clojure-mode-slime-font-lock ()
-           (let (font-lock-mode)
-             (clojure-mode-font-lock-setup))))
 
 (setq slime-net-coding-system 'utf-8-unix)
 

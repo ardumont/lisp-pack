@@ -1,6 +1,3 @@
-(define-key nrepl-interaction-mode-map
-  (kbd "C-c C-e") 'nrepl-eval-expression-at-point)
-
 ;; To show/hide block of code
 (require 'fold-dwim)
 (global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
