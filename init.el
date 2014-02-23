@@ -1,5 +1,7 @@
 (install-packs '(;; to code in common-lisp
                  ediff
+                 hideshow
+                 paredit
                  fold-dwim))
 
 (require 'hideshow)
@@ -31,6 +33,14 @@
 
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
+
+;; paredit setup
+(require 'paredit)
+(eval-after-load 'paredit
+  '(progn
+    (define-key paredit-mode-map (kbd "C-w") 'kill-region)
+    (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
+    (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)))
 
 ;; fold
 (require 'fold-dwim)
