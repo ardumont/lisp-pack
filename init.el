@@ -1,6 +1,6 @@
 (install-packs '(;; to code in common-lisp
                  ediff
-                 hideshow))
+                 fold-dwim))
 
 (require 'hideshow)
 
@@ -31,6 +31,12 @@
 
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
+
+;; fold
+(require 'fold-dwim)
+(global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
+(global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
+(global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
 
 ;; other bindings that uses personal functions
 ;; Load bindings config
