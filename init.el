@@ -5,6 +5,8 @@
                  fold-dwim))
 
 (require 'hideshow)
+(require 'paredit)
+(require 'fold-dwim)
 
 ;; common-lisp setup
 
@@ -25,16 +27,12 @@
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
 
-;; paredit setup
-(require 'paredit)
 (eval-after-load 'paredit
   '(progn
     (define-key paredit-mode-map (kbd "C-w") 'kill-region)
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)))
 
-;; fold
-(require 'fold-dwim)
 (global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
 (global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
 (global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
