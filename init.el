@@ -17,7 +17,7 @@
                 clojurescript-mode-hook
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
-  (add-hook hook (lambda () (paredit-mode +1))))
+  (add-hook hook 'enable-paredit-mode))
 
 ;; add paredit mode to different lisp modes
 
