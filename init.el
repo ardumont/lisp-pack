@@ -17,15 +17,7 @@
                 clojurescript-mode-hook
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
-  (add-hook hook 'enable-paredit-mode))
-
-;; add paredit mode to different lisp modes
-
-(dolist (hook '(emacs-lisp-mode-hook
-                clojure-mode-hook
-                clojurescript-mode-hook
-                lisp-mode-hook
-                inferior-lisp-mode-hook))
+  (add-hook hook 'enable-paredit-mode)
   (add-hook hook 'hs-minor-mode))
 
 (setq slime-net-coding-system 'utf-8-unix)
