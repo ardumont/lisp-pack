@@ -8,7 +8,7 @@
 
 ;;(load (expand-file-name "~/repo/perso/dot-files/quicklisp/slime-helper.el"))
 ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "/usr/bin/clisp")
+(setq inferior-lisp-program "/usr/bin/sbcl")
 
 ;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
