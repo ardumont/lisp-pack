@@ -30,6 +30,7 @@
 (eval-after-load 'paredit
   '(progn
     (define-key paredit-mode-map (kbd "C-w") 'kill-region)
+    (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)))
 
