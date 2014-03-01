@@ -1,3 +1,9 @@
+;;; lisp-pack.el --- Some common setup between the multiple lisp runtime
+
+;;; Commentary:
+
+;;; Code:
+
 (install-packs '(;; to code in common-lisp
                  ediff
                  hideshow
@@ -37,3 +43,5 @@
 (global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
 (global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
 (global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
+
+;;; lisp-pack ends here
