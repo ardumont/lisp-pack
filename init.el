@@ -44,4 +44,6 @@
 (global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
 (global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
 
+(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+
 ;;; lisp-pack ends here
