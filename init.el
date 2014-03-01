@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(install-packs '(;; to code in common-lisp
-                 ediff
+(install-packs '(ediff
                  hideshow
                  paredit
                  fold-dwim))
