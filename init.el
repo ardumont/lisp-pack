@@ -26,6 +26,11 @@
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "/usr/bin/sbcl")
 
+(defun lisp-pack/binding-fold ()
+  (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
+  (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
+  (local-set-key (kbd "C-c s s") 'fold-dwim-show-all))
+
 ;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
                 clojure-mode-hook
@@ -33,7 +38,8 @@
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
   (add-hook hook 'enable-paredit-mode)
-  (add-hook hook 'hs-minor-mode))
+  (add-hook hook 'hs-minor-mode)
+  (add-hook hook 'lisp-pack/binding-fold))
 
 (setq slime-net-coding-system 'utf-8-unix)
 
@@ -47,9 +53,5 @@
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
     (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
-
-(global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
-(global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
-(global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
 
 ;;; lisp-pack ends here
