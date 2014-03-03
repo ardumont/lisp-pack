@@ -31,13 +31,15 @@
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
 
-  (add-hook hook (lambda ()
-                   (enable-paredit-mode)
-                   (hs-minor-mode)
-                   (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
-                   (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
-                   (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
-                   (smartscan-mode))))
+  (add-hook hook
+            (lambda ()
+              (enable-paredit-mode)
+              (hs-minor-mode)
+              (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
+              (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
+              (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
+              (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
+              (smartscan-mode))))
 
 (setq slime-net-coding-system 'utf-8-unix)
 
