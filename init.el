@@ -8,12 +8,16 @@
                  hideshow
                  paredit
                  fold-dwim
-                 smartscan))
+                 smartscan
+                 clojure-mode
+                 clojurescript-mode))
 
 (require 'hideshow)
 (require 'paredit)
 (require 'fold-dwim)
 (require 'smartscan)
+(require 'clojure-mode)
+(require 'clojurescript-mode)
 
 (add-hook 'lisp-mode-hook (lambda () (smartscan-mode)))
 
