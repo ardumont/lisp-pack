@@ -7,11 +7,15 @@
 (install-packs '(ediff
                  hideshow
                  paredit
-                 fold-dwim))
+                 fold-dwim
+                 smartscan))
 
 (require 'hideshow)
 (require 'paredit)
 (require 'fold-dwim)
+(require 'smartscan)
+
+(add-hook 'lisp-mode-hook (lambda () (smartscan-mode)))
 
 ;; common-lisp setup
 
