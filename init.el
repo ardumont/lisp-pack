@@ -41,12 +41,11 @@
     (define-key paredit-mode-map (kbd "C-w") 'kill-region)
     (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
-    (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)))
+    (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
+    (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
 
 (global-set-key (kbd "C-c s t") 'fold-dwim-toggle)
 (global-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
 (global-set-key (kbd "C-c s s") 'fold-dwim-show-all)
-
-(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
 
 ;;; lisp-pack ends here
