@@ -52,6 +52,8 @@
     (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
-    (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
+    (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+    (define-key paredit-mode-map (kbd "M-)") 'paredit-forward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "M-(") 'paredit-backward-slurp-sexp)))
 
 ;;; lisp-pack ends here
