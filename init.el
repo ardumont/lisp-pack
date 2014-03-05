@@ -11,6 +11,7 @@
                  smartscan
                  clojure-mode
                  clojurescript-mode
+                 highlight
                  eval-sexp-fu))
 
 (require 'hideshow)
