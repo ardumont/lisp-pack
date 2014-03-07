@@ -40,7 +40,6 @@
               (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
               (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
               (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
-              (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
               (smartscan-mode 1))))
 
 (setq slime-net-coding-system 'utf-8-unix)
@@ -54,6 +53,7 @@
     (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
-    (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
+    (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+    (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key))
 
 ;;; lisp-pack ends here
