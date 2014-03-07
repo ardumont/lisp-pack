@@ -20,7 +20,6 @@
 (require 'smartscan)
 (require 'clojure-mode)
 (require 'clojurescript-mode)
-(require 'eval-sexp-fu)
 
 ;; common-lisp setup
 
@@ -42,8 +41,7 @@
               (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
               (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
               (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
-              (smartscan-mode)
-              (eval-sexp-fu-flash-mode))))
+              (smartscan-mode 1))))
 
 (setq slime-net-coding-system 'utf-8-unix)
 
