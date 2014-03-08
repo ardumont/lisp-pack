@@ -54,6 +54,6 @@
     (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
     (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
     (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
-    (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key))
+    (define-key paredit-mode-map (kbd "M-?") nil))) ;; unset the help key
 
-;;; lisp-pack ends here
+;;; lisp-pack.el ends here
