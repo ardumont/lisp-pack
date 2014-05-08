@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(require 'install-packages-pack)
 (install-packs '(ediff
                  hideshow
                  paredit
@@ -56,4 +57,5 @@
     (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
     (define-key paredit-mode-map (kbd "M-?") nil))) ;; unset the help key
 
+(provide 'lisp-pack)
 ;;; lisp-pack.el ends here
