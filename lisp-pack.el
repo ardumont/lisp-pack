@@ -11,7 +11,6 @@
                  fold-dwim
                  smartscan
                  clojure-mode
-                 clojurescript-mode
                  highlight
                  eval-sexp-fu))
 
@@ -20,7 +19,6 @@
 (require 'fold-dwim)
 (require 'smartscan)
 (require 'clojure-mode)
-(require 'clojurescript-mode)
 
 ;; common-lisp setup
 
@@ -30,7 +28,6 @@
 ;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
                 clojure-mode-hook
-                clojurescript-mode-hook
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
 
