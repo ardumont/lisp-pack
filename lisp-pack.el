@@ -5,14 +5,14 @@
 ;;; Code:
 
 (require 'install-packages-pack)
-(install-packs '(ediff
-                 hideshow
-                 paredit
-                 fold-dwim
-                 smartscan
-                 clojure-mode
-                 highlight
-                 eval-sexp-fu))
+(install-packages-pack/install-packs '(ediff
+                                       hideshow
+                                       paredit
+                                       fold-dwim
+                                       smartscan
+                                       clojure-mode
+                                       highlight
+                                       eval-sexp-fu))
 
 (require 'hideshow)
 (require 'paredit)
