@@ -23,7 +23,11 @@
 ;; common-lisp setup
 
 ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq inferior-lisp-program "~/.nix-profile/bin/sbcl")
+
+;; when using the git repository
+;; (add-to-list 'load-path "~/repo/perso/dot-files/slime")
+;; (require 'slime-autoloads)
 
 ;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
