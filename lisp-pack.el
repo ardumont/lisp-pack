@@ -23,11 +23,11 @@
 ;; common-lisp setup
 
 ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "sbcl")
+;; (setq inferior-lisp-program "sbcl")
 
 ;; when using the git repository
 ;;(add-to-list 'load-path "~/repo/perso/dot-files/slime")
-(require 'slime-autoloads)
+;; (require 'slime-autoloads)
 
 ;; add paredit mode to different lisp modes
 (dolist (hook '(emacs-lisp-mode-hook
@@ -44,7 +44,7 @@
               (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
               (smartscan-mode 1))))
 
-(setq slime-net-coding-system 'utf-8-unix)
+;; (setq slime-net-coding-system 'utf-8-unix)
 
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
