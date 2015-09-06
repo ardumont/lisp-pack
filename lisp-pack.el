@@ -71,7 +71,8 @@
 ;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
 
 (defun lisp-pack-lookup-lisp-binary (paths)
-  "Lookup PATHS until one binary is found."
+  "Lookup PATHS until one binary is found.
+If none is found, the last one is used."
   (cl-loop for path in paths
            until (file-exists-p path)
            finally return path))
