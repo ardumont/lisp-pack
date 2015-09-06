@@ -64,12 +64,6 @@
 
 (custom-set-variables '(slime-net-coding-system 'utf-8-unix))
 
-;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
-;; (setq slime-lisp-implementations
-;;       '((cmucl ("cmucl" "-quiet"))
-;;         (sbcl ("/opt/sbcl/bin/sbcl") :coding-system utf-8-unix)))
-;; (NAME (PROGRAM PROGRAM-ARGS...) &key CODING-SYSTEM INIT INIT-FUNCTION ENV)
-
 (defun lisp-pack-lookup-lisp-binary (paths)
   "Lookup PATHS until one binary is found.
 If none is found, the last one is used."
@@ -77,6 +71,7 @@ If none is found, the last one is used."
            until (file-exists-p path)
            finally return path))
 
+;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
 ;; discover the installed lisp
 (let* ((sbcl (lisp-pack-lookup-lisp-binary '("/usr/local/bin/sbcl"
                                              "/usr/bin/sbcl"
@@ -129,7 +124,6 @@ NEW-PORT is optionally the port to change."
 ;; Fix some weird bug
 ;;
 (eldoc-add-command 'slime-space)
-
 
 (provide 'lisp-pack)
 ;;; lisp-pack.el ends here
