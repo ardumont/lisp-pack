@@ -79,7 +79,8 @@ If none is found, the last one is used."
 
 ;; discover the installed lisp
 (let* ((sbcl (lisp-pack-lookup-lisp-binary '("/usr/local/bin/sbcl"
-                                             "/usr/bin/sbcl")))
+                                             "/usr/bin/sbcl"
+                                             "/run/current-system/sw/bin/sbcl")))
        (ccl  (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ccl64"
                                              "/usr/bin/ccl64")))
        (clisp (lisp-pack-lookup-lisp-binary '("/usr/local/bin/clisp"
