@@ -56,7 +56,7 @@
 (defvar *lisp-pack-quicklisp-home* (or (getenv "QUICKLISP_HOME") "~/quicklisp")
   "Quicklisp's home.")
 
-(slime-setup '(slime-fancy slime-repl))
+(slime-setup '(slime-fancy))
 
 (-when-let (quicklisp-slime-helper-file (expand-file-name (format "%s/slime-helper.el" *lisp-pack-quicklisp-home*)))
   (when (file-exists-p quicklisp-slime-helper-file)
