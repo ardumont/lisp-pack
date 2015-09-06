@@ -53,7 +53,7 @@
 
 (require 'slime)
 
-(defvar *lisp-pack-quicklisp-home* (getenv "QUICKLISP_HOME")
+(defvar *lisp-pack-quicklisp-home* (or (getenv "QUICKLISP_HOME") "~/quicklisp")
   "Quicklisp's home.")
 
 (slime-setup '(slime-fancy slime-repl))
