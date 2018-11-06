@@ -4,15 +4,14 @@
 
 ;;; Code:
 
-(use-package ediff)
-(use-package highlight)
-(use-package eval-sexp-fu)
-(use-package hideshow)
-(use-package paredit)
-(use-package fold-dwim)
-(use-package smartscan)
-(use-package clojure-mode)
-(use-package lisp-mode)
+(require 'highlight)
+(require 'eval-sexp-fu)
+(require 'hideshow)
+(require 'paredit)
+(require 'fold-dwim)
+(require 'smartscan)
+;;(require 'clojure-mode)
+(require 'lisp-mode)
 
 ;; common-lisp setup
 
@@ -32,18 +31,16 @@
               (smartscan-mode 1))))
 
 ;; checking parenthesis at save time
-(use-package files
-  :config
-  (add-hook 'after-save-hook 'check-parens nil t))
+(require 'files)
+(add-hook 'after-save-hook 'check-parens nil t)
 
-(use-package paredit
-  :config
-  (define-key paredit-mode-map (kbd "C-w") 'kill-region)
-  (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
-  (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
-  (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
-  (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
-  (define-key paredit-mode-map (kbd "M-?") nil)) ;; unset the help key
+(require 'paredit)
+(define-key paredit-mode-map (kbd "C-w") 'kill-region)
+(define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
+(define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
+(define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
+(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+(define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
 
 (require 'cl-lib)
 (require 'info)
@@ -53,44 +50,40 @@
 (defvar *lisp-pack-quicklisp-home* (or (getenv "QUICKLISP_HOME") "~/quicklisp")
   "Quicklisp's home.")
 
-(use-package slime
-  :init
-  (remove-hook 'slime-load-hook 'slime-repl-init)
-  :config
-  ;; (slime-setup '(slime-fancy))
+(require 'slime)
+(remove-hook 'slime-load-hook 'slime-repl-init)
 
-  (-when-let (quicklisp-slime-helper-file (expand-file-name (format "%s/slime-helper.el" *lisp-pack-quicklisp-home*)))
-    (when (file-exists-p quicklisp-slime-helper-file)
-      (load quicklisp-slime-helper-file)))
+(-when-let (quicklisp-slime-helper-file (expand-file-name (format "%s/slime-helper.el" *lisp-pack-quicklisp-home*)))
+  (when (file-exists-p quicklisp-slime-helper-file)
+    (load quicklisp-slime-helper-file)))
 
-  (custom-set-variables '(slime-net-coding-system 'utf-8-unix))
+(custom-set-variables '(slime-net-coding-system 'utf-8-unix))
 
-
-  (defun lisp-pack-lookup-lisp-binary (paths)
-    "Lookup PATHS until one binary is found.
+(defun lisp-pack-lookup-lisp-binary (paths)
+  "Lookup PATHS until one binary is found.
 If none is found, the last one is used."
-    (cl-loop for path in paths
-             until (file-exists-p path)
-             finally return path))
+  (cl-loop for path in paths
+	   until (file-exists-p path)
+	   finally return path))
 
-  ;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
-  ;; discover the installed lisp
-  (let* ((sbcl (lisp-pack-lookup-lisp-binary '("/usr/local/bin/sbcl"
-                                               "/usr/bin/sbcl"
-                                               "/run/current-system/sw/bin/sbcl")))
-         (ccl  (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ccl64"
-                                               "/usr/bin/ccl64")))
-         (clisp (lisp-pack-lookup-lisp-binary '("/usr/local/bin/clisp"
-                                                "/usr/bin/clisp")))
-         (ecl   (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ecl"
-                                                "/usr/bin/ecl"))))
+;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
+;; discover the installed lisp
+(let* ((sbcl (lisp-pack-lookup-lisp-binary '("/usr/local/bin/sbcl"
+					     "/usr/bin/sbcl"
+					     "/run/current-system/sw/bin/sbcl")))
+       (ccl  (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ccl64"
+					     "/usr/bin/ccl64")))
+       (clisp (lisp-pack-lookup-lisp-binary '("/usr/local/bin/clisp"
+					      "/usr/bin/clisp")))
+       (ecl   (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ecl"
+					      "/usr/bin/ecl"))))
 
-    (setq slime-lisp-implementations `((sbcl (,sbcl)             :coding-system utf-8-unix)
-                                       (ccl  (,ccl "-K" "utf-8") :coding-system utf-8-unix)
-                                       (clisp (,clisp)           :coding-system utf-8-unix)
-                                       (ecl (,ecl)               :coding-system utf-8-unix))
-          slime-default-lisp 'sbcl
-          inferior-lisp-program (caar (assoc-default 'sbcl slime-lisp-implementations))))
+  (setq slime-lisp-implementations `((sbcl (,sbcl)             :coding-system utf-8-unix)
+				     (ccl  (,ccl "-K" "utf-8") :coding-system utf-8-unix)
+				     (clisp (,clisp)           :coding-system utf-8-unix)
+				     (ecl (,ecl)               :coding-system utf-8-unix))
+	slime-default-lisp 'sbcl
+	inferior-lisp-program (caar (assoc-default 'sbcl slime-lisp-implementations))))
 
   ;; add path to documentation
   ;; (cl-loop for p in '("~/dev/CL/dpans2texi-1.05"
@@ -98,15 +91,15 @@ If none is found, the last one is used."
   ;;                     "~/dev/CL/asdf/doc")
   ;;          do (add-to-list 'Info-directory-list p))
 
-  (defun lisp-pack-slime-new-repl (&optional new-port)
-    "Create additional REPL for the current Lisp connection.
+(defun lisp-pack-slime-new-repl (&optional new-port)
+  "Create additional REPL for the current Lisp connection.
 NEW-PORT is optionally the port to change."
-    (interactive)
-    (if (slime-current-connection)
-        (let ((port (or new-port (slime-connection-port (slime-connection)))))
-          (slime-eval `(swank:create-server :port ,port))
-          (slime-connect slime-lisp-host port))
-      (error "Not connected"))))
+  (interactive)
+  (if (slime-current-connection)
+      (let ((port (or new-port (slime-connection-port (slime-connection)))))
+	(slime-eval `(swank:create-server :port ,port))
+	(slime-connect slime-lisp-host port))
+    (error "Not connected"))))
 
 ;;
 ;; Fix some SLIME indentation shortcomings.
