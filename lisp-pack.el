@@ -10,7 +10,7 @@
 (require 'paredit)
 (require 'fold-dwim)
 (require 'smartscan)
-;;(require 'clojure-mode)
+(require 'clojure-mode)
 (require 'lisp-mode)
 
 ;; common-lisp setup
@@ -20,7 +20,6 @@
                 clojure-mode-hook
                 lisp-mode-hook
                 inferior-lisp-mode-hook))
-
   (add-hook hook
             (lambda ()
               (enable-paredit-mode)
@@ -41,84 +40,6 @@
 (define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
 (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
 (define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
-
-(require 'cl-lib)
-(require 'info)
-
-;; Adapted from Dimitri Fontaine's, thanks dude!
-
-(defvar *lisp-pack-quicklisp-home* (or (getenv "QUICKLISP_HOME") "~/quicklisp")
-  "Quicklisp's home.")
-
-(require 'slime)
-(remove-hook 'slime-load-hook 'slime-repl-init)
-
-(-when-let (quicklisp-slime-helper-file (expand-file-name (format "%s/slime-helper.el" *lisp-pack-quicklisp-home*)))
-  (when (file-exists-p quicklisp-slime-helper-file)
-    (load quicklisp-slime-helper-file)))
-
-(custom-set-variables '(slime-net-coding-system 'utf-8-unix))
-
-(defun lisp-pack-lookup-lisp-binary (paths)
-  "Lookup PATHS until one binary is found.
-If none is found, the last one is used."
-  (cl-loop for path in paths
-	   until (file-exists-p path)
-	   finally return path))
-
-;; http://common-lisp.net/project/slime/doc/html/Multiple-Lisps.html
-;; discover the installed lisp
-(let* ((sbcl (lisp-pack-lookup-lisp-binary '("/usr/local/bin/sbcl"
-					     "/usr/bin/sbcl"
-					     "/run/current-system/sw/bin/sbcl")))
-       (ccl  (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ccl64"
-					     "/usr/bin/ccl64")))
-       (clisp (lisp-pack-lookup-lisp-binary '("/usr/local/bin/clisp"
-					      "/usr/bin/clisp")))
-       (ecl   (lisp-pack-lookup-lisp-binary '("/usr/local/bin/ecl"
-					      "/usr/bin/ecl"))))
-
-  (setq slime-lisp-implementations `((sbcl (,sbcl)             :coding-system utf-8-unix)
-				     (ccl  (,ccl "-K" "utf-8") :coding-system utf-8-unix)
-				     (clisp (,clisp)           :coding-system utf-8-unix)
-				     (ecl (,ecl)               :coding-system utf-8-unix))
-	slime-default-lisp 'sbcl
-	inferior-lisp-program (caar (assoc-default 'sbcl slime-lisp-implementations))))
-
-  ;; add path to documentation
-  ;; (cl-loop for p in '("~/dev/CL/dpans2texi-1.05"
-  ;;                     "~/dev/CL/cl-yacc"
-  ;;                     "~/dev/CL/asdf/doc")
-  ;;          do (add-to-list 'Info-directory-list p))
-
-(defun lisp-pack-slime-new-repl (&optional new-port)
-  "Create additional REPL for the current Lisp connection.
-NEW-PORT is optionally the port to change."
-  (interactive)
-  (if (slime-current-connection)
-      (let ((port (or new-port (slime-connection-port (slime-connection)))))
-	(slime-eval `(swank:create-server :port ,port))
-	(slime-connect slime-lisp-host port))
-    (error "Not connected")))
-
-;;
-;; Fix some SLIME indentation shortcomings.
-;;
-(put 'handling-pgsql-notices 'common-lisp-indent-function
-     (get 'unwind-protect 'common-lisp-indent-function))
-(put 'task-handler-bind 'common-lisp-indent-function
-     (get 'let 'common-lisp-indent-function))
-(put 'bind 'common-lisp-indent-function
-     (get 'let 'common-lisp-indent-function))
-(put 'register-groups-bind 'common-lisp-indent-function 2)
-(put 'with-prefixed-accessors 'common-lisp-indent-function 2)
-(put 'with-pgsql-connection 'common-lisp-indent-function 1)
-(put 'with-stats-collection 'common-lisp-indent-function 2)
-
-;;
-;; Fix some weird bug
-;;
-(eldoc-add-command 'slime-space)
 
 (provide 'lisp-pack)
 ;;; lisp-pack.el ends here
