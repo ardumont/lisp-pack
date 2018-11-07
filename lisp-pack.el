@@ -99,7 +99,7 @@ NEW-PORT is optionally the port to change."
       (let ((port (or new-port (slime-connection-port (slime-connection)))))
 	(slime-eval `(swank:create-server :port ,port))
 	(slime-connect slime-lisp-host port))
-    (error "Not connected"))))
+    (error "Not connected")))
 
 ;;
 ;; Fix some SLIME indentation shortcomings.
