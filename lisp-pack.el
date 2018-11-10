@@ -27,7 +27,8 @@
               (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
               (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
               (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
-              (smartscan-mode 1))))
+              (smartscan-mode 1)
+	      (eldoc-mode))))
 
 ;; checking parenthesis at save time
 (require 'files)
