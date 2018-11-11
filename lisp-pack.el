@@ -4,14 +4,17 @@
 
 ;;; Code:
 
+;; internal libs
 (require 'highlight)
-(require 'eval-sexp-fu)
 (require 'hideshow)
 (require 'paredit)
+(require 'lisp-mode)
+(require 'files)
+
+;; external
+(require 'eval-sexp-fu)
 (require 'fold-dwim)
 (require 'smartscan)
-(require 'clojure-mode)
-(require 'lisp-mode)
 
 ;; common-lisp setup
 
@@ -31,10 +34,8 @@
 	      (eldoc-mode))))
 
 ;; checking parenthesis at save time
-(require 'files)
 (add-hook 'after-save-hook 'check-parens nil t)
 
-(require 'paredit)
 (define-key paredit-mode-map (kbd "C-w") 'kill-region)
 (define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
 (define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
