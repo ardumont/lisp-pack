@@ -15,6 +15,13 @@
 (require 'eval-sexp-fu)
 (require 'fold-dwim)
 
+(define-key paredit-mode-map (kbd "C-w") 'kill-region)
+(define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
+(define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
+(define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
+(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+(define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
+
 ;; Add multiple modes to lispy modes
 (dolist (fn '(enable-paredit-mode
 	      hs-minor-mode  ;; hideshow
@@ -29,13 +36,6 @@
 
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
-
-(define-key paredit-mode-map (kbd "C-w") 'kill-region)
-(define-key paredit-mode-map (kbd "C-M-h") 'backward-kill-sexp)
-(define-key paredit-mode-map (kbd "M-s") 'paredit-splice-sexp)
-(define-key paredit-mode-map (kbd "M-S") 'paredit-split-sexp)
-(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
-(define-key paredit-mode-map (kbd "M-?") nil) ;; unset the help key
 
 (provide 'lisp-pack)
 ;;; lisp-pack.el ends here
