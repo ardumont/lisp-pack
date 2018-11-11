@@ -35,7 +35,7 @@
     (add-hook lisp-hook fn)))
 
 ;; checking parenthesis at save time
-(add-hook 'after-save-hook 'check-parens nil t)
+(add-hook 'before-save-hook 'check-parens nil t)
 
 (provide 'lisp-pack)
 ;;; lisp-pack.el ends here
