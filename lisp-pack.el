@@ -14,13 +14,10 @@
 ;; external
 (require 'eval-sexp-fu)
 (require 'fold-dwim)
-(require 'smartscan)
 
 ;; Add multiple modes to lispy modes
 (dolist (fn '(enable-paredit-mode
 	      hs-minor-mode  ;; hideshow
-	      smartscan-mode
-	      eldoc-mode
 	      (lambda ()
 		(local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
 		(local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
