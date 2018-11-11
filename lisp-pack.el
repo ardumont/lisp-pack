@@ -16,22 +16,19 @@
 (require 'fold-dwim)
 (require 'smartscan)
 
-;; common-lisp setup
-
-;; add paredit mode to different lisp modes
-(dolist (hook '(emacs-lisp-mode-hook
-                clojure-mode-hook
-                lisp-mode-hook
-                inferior-lisp-mode-hook))
-  (add-hook hook
-            (lambda ()
-              (enable-paredit-mode)
-              (hs-minor-mode)
-              (local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
-              (local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
-              (local-set-key (kbd "C-c s s") 'fold-dwim-show-all)
-              (smartscan-mode 1)
-	      (eldoc-mode))))
+;; Add multiple modes to lispy modes
+(dolist (fn '(enable-paredit-mode
+	      hs-minor-mode  ;; hideshow
+	      smartscan-mode
+	      eldoc-mode
+	      (lambda ()
+		(local-set-key (kbd "C-c s t") 'fold-dwim-toggle)
+		(local-set-key (kbd "C-c s h") 'fold-dwim-hide-all)
+		(local-set-key (kbd "C-c s s") 'fold-dwim-show-all))))
+  (dolist (lisp-hook '(emacs-lisp-mode-hook
+		       lisp-mode-hook
+		       inferior-lisp-mode-hook))
+    (add-hook lisp-hook fn)))
 
 ;; checking parenthesis at save time
 (add-hook 'after-save-hook 'check-parens nil t)
